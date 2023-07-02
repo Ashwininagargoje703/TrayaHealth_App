@@ -24,7 +24,7 @@ const AddReview = ({ getReviewData }) => {
         message,
       };
       let res = await fetch(
-        `https://quick-cows-shake.loca.lt/review/add-review`,
+        `https://traya-health-backend-production.up.railway.app/review/add-review`,
         {
           method: "POST",
           headers: {

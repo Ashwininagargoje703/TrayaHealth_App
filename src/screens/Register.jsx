@@ -27,13 +27,16 @@ const RegisterScreen = ({ navigation }) => {
         email,
         password,
       };
-      let res = await fetch(`https://quick-cows-shake.loca.lt/user/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      let res = await fetch(
+        `https://traya-health-backend-production.up.railway.app/user/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
       navigation.navigate("Login");
     } catch (e) {
       console.log(e.message);

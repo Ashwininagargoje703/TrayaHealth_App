@@ -27,13 +27,16 @@ const LoginScreen = ({ navigation }) => {
         email,
         password,
       };
-      let res = await fetch(`https://quick-cows-shake.loca.lt/user/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      let res = await fetch(
+        `https://traya-health-backend-production.up.railway.app/user/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
       let data = await res.json();
       if (data.status != 200) {
         Alert.alert("Wrong Password", "please enter correct password");

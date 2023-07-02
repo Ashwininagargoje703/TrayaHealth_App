@@ -19,7 +19,7 @@ const Feedback = ({ navigation }) => {
       if (!user) return;
 
       let res = await fetch(
-        `https://quick-cows-shake.loca.lt/review/get-review/${user.email}`
+        `https://traya-health-backend-production.up.railway.app/review/get-review/${user.email}`
       );
       let data = await res.json();
       setReview(data.review);

@@ -21,7 +21,7 @@ const EditReview = ({ review, onEditReview, getReviewData }) => {
         message,
       };
       let res = await fetch(
-        `https://quick-cows-shake.loca.lt/review/edit-review`,
+        `https://traya-health-backend-production.up.railway.app/review/edit-review`,
         {
           method: "POST",
           headers: {
