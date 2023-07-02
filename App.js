@@ -1,19 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import AllRoutes from "./src/screens/AllRoutes";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Traya Health App</Text>
-
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <AllRoutes />;
 }
 
 const styles = StyleSheet.create({
