@@ -4,11 +4,16 @@ import { AuthContext } from "../context/AuthContext";
 import ViewReview from "../Components/ViewReview";
 import AddReview from "../Components/AddReview";
 import EditReview from "../Components/EditReview";
+import { TouchableOpacity } from "react-native";
 
 const Feedback = ({ navigation }) => {
   const { user } = useContext(AuthContext);
   const [review, setReview] = useState(null);
   const [editMode, setEditMode] = useState(false);
+
+  if (!review || !user) {
+    navigation.navigate("Login");
+  }
 
   const onEditReview = (value) => {
     setEditMode(value);
@@ -22,7 +27,11 @@ const Feedback = ({ navigation }) => {
         `https://traya-health-backend-production.up.railway.app/review/get-review/${user.email}`
       );
       let data = await res.json();
-      setReview(data.review);
+      if (data.status == 200) {
+        // console.log("setting");
+        setReview(data.review);
+      }
+      // console.log(data);
     } catch (e) {
       console.log("err", e.message);
     }
@@ -40,8 +49,19 @@ const Feedback = ({ navigation }) => {
 
   return (
     <>
-      {!review && <AddReview getReviewData={getReviewData} />}
-      {!editMode && review && (
+      {!review && !user && (
+        <View style={styles.container}>
+          <Text style={styles.textInfo}>Please Login First</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Login")}
+            style={styles.loginLink}
+          >
+            <Text style={styles.loginLinkText}>Go to Login</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+      {!review && user && <AddReview getReviewData={getReviewData} />}
+      {!editMode && review !== null && (
         <View style={styles.container}>
           <ViewReview review={review} onEditReview={onEditReview} />
         </View>
@@ -63,6 +83,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: 16,
+  },
+  textInfo: {
+    fontSize: 25,
+  },
+  loginLink: {
+    marginTop: 16,
+    fontSize: 20,
+  },
+  loginLinkText: {
+    color: "#2196f3",
+    fontSize: 14,
+    fontWeight: "bold",
+    textDecorationLine: "underline",
   },
 });
 

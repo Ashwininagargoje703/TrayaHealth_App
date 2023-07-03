@@ -24,7 +24,7 @@ const RegisterScreen = ({ navigation }) => {
     try {
       let payload = {
         name: fullName,
-        email,
+        email: email.toLowerCase(),
         password,
       };
       let res = await fetch(
@@ -70,7 +70,10 @@ const RegisterScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.loginLink}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Login")}
+        style={styles.loginLink}
+      >
         <Text style={styles.loginLinkText}>Already have an account? Login</Text>
       </TouchableOpacity>
     </View>

@@ -24,7 +24,7 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = async () => {
     try {
       let payload = {
-        email,
+        email: email.toLowerCase(),
         password,
       };
       let res = await fetch(
@@ -71,6 +71,12 @@ const LoginScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Register")}
+        style={styles.loginLink}
+      >
+        <Text style={styles.loginLinkText}>Not have an account? Register</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -110,6 +116,16 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  loginLink: {
+    marginTop: 16,
+    fontSize: 20,
+  },
+  loginLinkText: {
+    color: "#2196f3",
+    fontSize: 14,
+    fontWeight: "bold",
+    textDecorationLine: "underline",
   },
 });
 
